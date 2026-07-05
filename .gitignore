@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# IDE
+.idea/
+.vscode/
+
+# Environments
+.venv/
+venv/
+env/
+
+# Local datasets
+dataset/**
+!dataset/README.md
+!dataset/*/
+!dataset/*/.gitkeep
+
+# Model weights and logs
+checkpoints/**
+!checkpoints/*/
+!checkpoints/*/.gitkeep
+
+logs/**
+!logs/*/
+!logs/*/.gitkeep
+
+# Large timestamp-level outputs
+results/**/*_score.*
+results/**/*_pred_raw.*
+results/**/*_pred_pa.*
+results/**/*_label.*
+results/**/*.npy
+results/**/*.npz
+!results/README.md
+!results/*/
+!results/*/.gitkeep
+!results/**/*.csv
+!results/**/*.json
+!results/**/*.md
+
+# Common binary artifacts
+*.pt
+*.pth
+*.ckpt
+*.pkl
+*.pickle
+
+# Temporary restructuring backups
+archive/restructure_backup_*/
