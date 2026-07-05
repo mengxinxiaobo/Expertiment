@@ -1,0 +1,46 @@
+Logger has been set up.
+Logger has been set up.
+Logger has been set up.
+data_name:MSL
+data_path:/mnt/c/Users/DING/Desktop/Experiment/CODE/dataset
+device:cuda
+ver:
+win_size:105
+stride:1
+batch_size:128
+epochs:3
+anormly_ratio:0.75
+learning_rate:0.0001
+patch_sizes:[3, 5, 7]
+d_model:60
+e_layer:3
+seed:42
+save_model:1
+full_res:1
+model_save_path:/mnt/c/Users/DING/Desktop/Experiment/CODE/BaselineModels/PatchAD-main/checkpoints_compare/
+res_pth:/mnt/c/Users/DING/Desktop/Experiment/CODE/BaselineModels/PatchAD-main/results_compare/
+mode:train
+patch_mx:0.1
+cont_beta:0.0
+index:137
+input_c:55
+Result path /mnt/c/Users/DING/Desktop/Experiment/CODE/BaselineModels/PatchAD-main/results_compare/MSL
+========Train========
+MSE 0.51026451587677 Loss 0.0
+	speed: 41.5483s/iter; left time: 55923.9893s
+Epoch time left: 18904.4689s
+MSE 0.6471701264381409 Loss 0.0
+	speed: 58.0146s/iter; left time: 76927.4026s
+Epoch time left: 26396.6578s
+MSE 0.7493418455123901 Loss 0.0
+	speed: 40.2004s/iter; left time: 52501.7535s
+Epoch time left: 18291.1928s
+MSE 0.7334442138671875 Loss 0.0
+	speed: 65.1249s/iter; left time: 83750.6800s
+Epoch time left: 29631.8502s
+MSE 0.5778725743293762 Loss 0.0
+	speed: 54.4373s/iter; left time: 68917.5811s
+Epoch time left: 24768.9569s
+MSE 0.4908723831176758 Loss 0.0
+	speed: 38.3189s/iter; left time: 47745.3194s
+Epoch time left: 17435.0885s

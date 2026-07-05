@@ -1,0 +1,27 @@
+Logger has been set up.
+Logger has been set up.
+Logger has been set up.
+data_name:MSL
+data_path:/mnt/c/Users/DING/Desktop/Experiment/CODE
+device:cuda
+ver:
+win_size:105
+stride:1
+batch_size:128
+epochs:3
+anormly_ratio:0.75
+learning_rate:0.0001
+patch_sizes:[3, 5, 7]
+d_model:60
+e_layer:3
+seed:42
+save_model:1
+full_res:1
+model_save_path:/mnt/c/Users/DING/Desktop/Experiment/CODE/BaselineModels/PatchAD-main/checkpoints_compare/
+res_pth:/mnt/c/Users/DING/Desktop/Experiment/CODE/BaselineModels/PatchAD-main/results_compare/
+mode:train
+patch_mx:0.1
+cont_beta:0.0
+index:137
+input_c:55
+Result path /mnt/c/Users/DING/Desktop/Experiment/CODE/BaselineModels/PatchAD-main/results_compare/MSL
