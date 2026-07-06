@@ -1,54 +1,148 @@
-# Python
-__pycache__/
-*.py[cod]
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
+# =========================
+# ASCA-AD / PPLAD Project .gitignore
+# Keep source code and scripts; ignore datasets, checkpoints, logs, and generated experiment outputs.
+# =========================
 
-# IDE
-.idea/
-.vscode/
+# -------------------------
+# Dataset / raw data
+# -------------------------
+dataset/
+datasets/
+data/
+data_raw/
+data_clean/
+dataset_clean/
+raw_data/
+processed_data/
 
-# Environments
-.venv/
-venv/
-env/
+# Baseline model data directories
+BaselineModels/**/dataset/
+BaselineModels/**/datasets/
+BaselineModels/**/data/
+BaselineModels/**/data_raw/
+BaselineModels/**/data_clean/
+BaselineModels/**/processed_data/
 
-# Local datasets
-dataset/**
-!dataset/README.md
-!dataset/*/
-!dataset/*/.gitkeep
+# -------------------------
+# Training outputs / experiment outputs
+# -------------------------
+runs/
+Src/runs/
+outputs/
+output/
+results/
+result/
+logs/
+log/
+checkpoints/
+checkpoint/
+wandb/
+tensorboard/
+mlruns/
 
-# Model weights and logs
-checkpoints/**
-!checkpoints/*/
-!checkpoints/*/.gitkeep
+# Baseline model generated outputs
+BaselineModels/**/runs/
+BaselineModels/**/outputs/
+BaselineModels/**/output/
+BaselineModels/**/results/
+BaselineModels/**/result/
+BaselineModels/**/logs/
+BaselineModels/**/log/
+BaselineModels/**/checkpoints/
+BaselineModels/**/checkpoint/
+BaselineModels/**/wandb/
 
-logs/**
-!logs/*/
-!logs/*/.gitkeep
-
-# Large timestamp-level outputs
-results/**/*_score.*
-results/**/*_pred_raw.*
-results/**/*_pred_pa.*
-results/**/*_label.*
-results/**/*.npy
-results/**/*.npz
-!results/README.md
-!results/*/
-!results/*/.gitkeep
-!results/**/*.csv
-!results/**/*.json
-!results/**/*.md
-
-# Common binary artifacts
+# -------------------------
+# Model weights / large binary artifacts
+# -------------------------
 *.pt
 *.pth
 *.ckpt
+*.onnx
 *.pkl
 *.pickle
+*.joblib
 
-# Temporary restructuring backups
-archive/restructure_backup_*/
+# -------------------------
+# Array / table data artifacts
+# -------------------------
+*.npy
+*.npz
+*.h5
+*.hdf5
+*.mat
+*.csv
+*.tsv
+*.parquet
+*.feather
+
+# -------------------------
+# Generated plots / reports under experiment folders
+# Do not globally ignore all images/docs, so README assets and paper drafts can still be committed.
+# -------------------------
+figures/
+figure/
+plots/
+plot_outputs/
+reports/generated/
+artifacts/
+
+# -------------------------
+# Python cache / compiled files
+# -------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.so
+
+# -------------------------
+# Virtual environments / package build
+# -------------------------
+.venv/
+venv/
+env/
+ENV/
+.conda/
+conda/
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-wheel-metadata/
+
+# -------------------------
+# Jupyter
+# -------------------------
+.ipynb_checkpoints/
+*.ipynb
+
+# -------------------------
+# OS / editor / IDE
+# -------------------------
+.DS_Store
+Thumbs.db
+.idea/
+*.iml
+.vscode/
+
+# -------------------------
+# Logs / temporary files
+# -------------------------
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+.cache/
+tmp/
+temp/
+
+# -------------------------
+# Optional: keep selected lightweight result summaries
+# Uncomment these lines only if you want to commit final summarized results.
+# -------------------------
+# !results/ALL_COMBINED_FIXED/summary.md
+# !results/ALL_COMBINED_FIXED/all_combined_fixed_metrics.json
+# !results/ALL_COMBINED_FIXED/all_combined_fixed_metrics.csv
