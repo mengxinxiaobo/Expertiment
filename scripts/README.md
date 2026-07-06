@@ -1,11 +1,27 @@
 # Scripts
 
-Main experiment entry points.
+Unified experiment entry points.
 
-Recommended command:
+Single dataset:
 
-bash scripts/run_all_fixed_combined.sh
+    python scripts/evaluate.py SKAB
+    python scripts/evaluate.py PUMP
+    python scripts/evaluate.py MSL
 
-Single-dataset example:
+Short shell wrapper:
 
-python scripts/run_all_fixed_combined.py --datasets SKAB
+    bash scripts/eval.sh SKAB
+
+All datasets:
+
+    python scripts/evaluate.py all
+    bash scripts/eval_all.sh
+
+Default output path:
+
+    results/FIXED_COMBINED/<DATASET>/
+
+Dataset-specific parameters are stored in:
+
+    configs/datasets.json
+    configs/experiment.json
