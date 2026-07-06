@@ -1,27 +1,31 @@
 # Scripts
 
-Unified experiment entry points.
+Recommended entrypoint:
 
-Single dataset:
+    python scripts/run.py SKAB
+
+Default behavior:
+
+    train missing checkpoint, then evaluate
+
+Common commands:
+
+    python scripts/run.py SKAB
+    python scripts/run.py SKAB --mode eval
+    python scripts/run.py SKAB --mode train-eval --force-train
+    python scripts/run.py SKAB,PUMP,PSM --mode eval
+    python scripts/run.py all --mode eval
+
+Evaluation-only compatibility entrypoint:
 
     python scripts/evaluate.py SKAB
-    python scripts/evaluate.py PUMP
-    python scripts/evaluate.py MSL
 
-Short shell wrapper:
+Short shell wrappers:
 
     bash scripts/eval.sh SKAB
-
-All datasets:
-
-    python scripts/evaluate.py all
     bash scripts/eval_all.sh
 
-Default output path:
+Outputs:
 
     results/FIXED_COMBINED/<DATASET>/
-
-Dataset-specific parameters are stored in:
-
-    configs/datasets.json
-    configs/experiment.json
+    results/PIPELINE_RUNS/
