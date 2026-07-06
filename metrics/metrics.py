@@ -18,7 +18,7 @@ def combine_all_evaluation_scores(y_test, pred_labels, anomaly_scores):
     true_events = get_events(y_test)
     pa_accuracy, pa_precision, pa_recall, pa_f_score = get_adjust_F1PA(y_test, pred_labels)
     MCC_score = MCC(y_test, pred_labels)
-    vus_results = get_range_vus_roc(y_test, pred_labels, 100) # default slidingWindow = 100
+    vus_results = get_range_vus_roc(anomaly_scores, pred_labels, 100) # default slidingWindow = 100
     
     score_list_simple = {
                   "pa_accuracy":pa_accuracy, 

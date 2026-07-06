@@ -1,0 +1,8 @@
+{
+  "config_source": "V4 scripts/SMAP.sh and uploaded experiment record",
+  "anormly_ratio": 2.0,
+  "win_size": 100,
+  "batch_size": 128,
+  "num_epochs": 10,
+  "lr": 0.001
+}

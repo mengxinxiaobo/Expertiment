@@ -1,0 +1,260 @@
+{
+  "project_root": "..",
+  "v4_root": ".",
+  "original_root": "BaselineModels/PPLAD-main",
+  "dataset_root": "dataset",
+  "output_root": "comparison_runs",
+  "python": "python",
+  "device": "cuda",
+  "gpu_index": 0,
+  "resource_poll_seconds": 0.1,
+  "benchmark": {
+    "warmup": 10,
+    "repeats": 100,
+    "include_exact_threshold": true,
+    "protocols": [
+      "native",
+      "controlled"
+    ],
+    "controlled_win_size": 100,
+    "controlled_batch_size": 128
+  },
+  "datasets": {
+    "SMAP": {
+      "enabled": true,
+      "folder": "SMAP",
+      "file_prefix": "SMAP",
+      "loader_dataset": "SMAP",
+      "original_data_link": "SMAP",
+      "original": {
+        "config_source": "PPLAD official scripts/SMAP.sh",
+        "anormly_ratio": 0.8,
+        "win_size": 90,
+        "batch_size": 128,
+        "num_epochs": 3,
+        "lr": 0.0001,
+        "local_size": [
+          3
+        ],
+        "global_size": [
+          5
+        ],
+        "d_model": 128,
+        "r": 0.9,
+        "similar": "MSE",
+        "loss_fuc": "MSE"
+      },
+      "v4": {
+        "config_source": "V4 scripts/SMAP.sh and uploaded experiment record",
+        "anormly_ratio": 2.0,
+        "win_size": 100,
+        "batch_size": 128,
+        "num_epochs": 10,
+        "lr": 0.001
+      }
+    },
+    "MSL": {
+      "enabled": true,
+      "folder": "MSL",
+      "file_prefix": "MSL",
+      "loader_dataset": "MSL",
+      "original_data_link": "MSL",
+      "original": {
+        "config_source": "PPLAD official scripts/MSL.sh",
+        "anormly_ratio": 0.83,
+        "win_size": 90,
+        "batch_size": 256,
+        "num_epochs": 3,
+        "lr": 0.0001,
+        "local_size": [
+          7
+        ],
+        "global_size": [
+          30
+        ],
+        "d_model": 128,
+        "r": 0.5,
+        "similar": "MSE",
+        "loss_fuc": "MSE"
+      },
+      "v4": {
+        "config_source": "V4 scripts/MSL.sh and uploaded experiment record",
+        "anormly_ratio": 0.75,
+        "win_size": 100,
+        "batch_size": 128,
+        "num_epochs": 10,
+        "lr": 0.001
+      }
+    },
+    "PSM": {
+      "enabled": true,
+      "folder": "PSM",
+      "file_prefix": "PSM",
+      "loader_dataset": "PSM",
+      "original_data_link": "PSM",
+      "original": {
+        "config_source": "PPLAD official scripts/PSM.sh",
+        "anormly_ratio": 0.8,
+        "win_size": 60,
+        "batch_size": 256,
+        "num_epochs": 1,
+        "lr": 0.0001,
+        "local_size": [
+          1
+        ],
+        "global_size": [
+          20
+        ],
+        "d_model": 128,
+        "r": 0.5,
+        "similar": "MSE",
+        "loss_fuc": "MSE"
+      },
+      "v4": {
+        "config_source": "Current V4 scripts/PSM.sh; historical best record",
+        "anormly_ratio": 1.0,
+        "win_size": 100,
+        "batch_size": 128,
+        "num_epochs": 10,
+        "lr": 0.001
+      }
+    },
+    "HAI": {
+      "enabled": true,
+      "folder": "HAI",
+      "file_prefix": "HAI",
+      "loader_dataset": "HAI",
+      "original_data_link": "HAI",
+      "original": {
+        "config_source": "PPLAD official scripts/HAI.sh",
+        "anormly_ratio": 0.98,
+        "win_size": 90,
+        "batch_size": 128,
+        "num_epochs": 3,
+        "lr": 0.0001,
+        "local_size": [
+          9
+        ],
+        "global_size": [
+          18
+        ],
+        "d_model": 128,
+        "r": 0.8,
+        "similar": "MSE",
+        "loss_fuc": "MSE"
+      },
+      "v4": {
+        "config_source": "V4 scripts/HAI.sh and uploaded experiment record",
+        "anormly_ratio": 0.98,
+        "win_size": 100,
+        "batch_size": 128,
+        "num_epochs": 10,
+        "lr": 0.001
+      }
+    },
+    "SMD": {
+      "enabled": true,
+      "folder": "SMD",
+      "file_prefix": "SMD",
+      "loader_dataset": "SMD",
+      "original_data_link": "SMD",
+      "original": {
+        "config_source": "PPLAD official scripts/SMD.sh",
+        "anormly_ratio": 0.9,
+        "win_size": 105,
+        "batch_size": 128,
+        "num_epochs": 3,
+        "lr": 0.0001,
+        "local_size": [
+          7
+        ],
+        "global_size": [
+          11
+        ],
+        "d_model": 128,
+        "r": 0.9,
+        "similar": "MSE",
+        "loss_fuc": "MSE"
+      },
+      "v4": {
+        "config_source": "V4 scripts/SMD.sh and uploaded experiment record",
+        "anormly_ratio": 0.5,
+        "win_size": 100,
+        "batch_size": 128,
+        "num_epochs": 10,
+        "lr": 0.001
+      }
+    },
+    "WADI": {
+      "enabled": false,
+      "folder": "WADI",
+      "file_prefix": "WaDi",
+      "loader_dataset": "WaDi",
+      "original_data_link": "WaDi",
+      "original": {
+        "config_source": "PPLAD official scripts/WaDi.sh",
+        "anormly_ratio": 0.5,
+        "win_size": 90,
+        "batch_size": 128,
+        "num_epochs": 3,
+        "lr": 0.0001,
+        "local_size": [
+          3
+        ],
+        "global_size": [
+          9
+        ],
+        "d_model": 128,
+        "r": 0.9,
+        "similar": "MSE",
+        "loss_fuc": "MSE"
+      },
+      "v4": {
+        "config_source": "V4 scripts/WADI.sh and uploaded experiment record",
+        "anormly_ratio": 0.5,
+        "win_size": 100,
+        "batch_size": 128,
+        "num_epochs": 10,
+        "lr": 0.001
+      }
+    },
+    "SKAB": {
+      "enabled": false,
+      "folder": "SKAB",
+      "file_prefix": "SKAB",
+      "loader_dataset": "SKAB",
+      "original_data_link": "SKAB",
+      "original": {
+        "config_source": "UNVERIFIED: official PPLAD repository has no SKAB shell script",
+        "anormly_ratio": null
+      },
+      "v4": {
+        "config_source": "V4 scripts/SKAB.sh and uploaded experiment record",
+        "anormly_ratio": 2.0,
+        "win_size": 100,
+        "batch_size": 128,
+        "num_epochs": 10,
+        "lr": 0.001
+      }
+    },
+    "PUMP": {
+      "enabled": false,
+      "folder": "PUMP",
+      "file_prefix": "PUMP",
+      "loader_dataset": "PUMP",
+      "original_data_link": "PUMP",
+      "original": {
+        "config_source": "UNVERIFIED: official PPLAD repository has no PUMP shell script",
+        "anormly_ratio": null
+      },
+      "v4": {
+        "config_source": "V4 scripts/PUMP.sh and uploaded experiment record",
+        "anormly_ratio": 0.5,
+        "win_size": 100,
+        "batch_size": 128,
+        "num_epochs": 10,
+        "lr": 0.001
+      }
+    }
+  }
+}
