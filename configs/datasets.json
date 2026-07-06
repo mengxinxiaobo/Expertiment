@@ -1,0 +1,42 @@
+{
+  "MSL": {
+    "epochs": 3,
+    "anormly_ratio": 0.83,
+    "runner": "run_msl_official_vs_v4_best_v3.py"
+  },
+  "SMAP": {
+    "epochs": 3,
+    "anormly_ratio": 0.8,
+    "runner": "run_smap_official_vs_v4_best.py"
+  },
+  "PSM": {
+    "epochs": 1,
+    "anormly_ratio": 0.8,
+    "runner": "run_psm_official_vs_v4_best.py"
+  },
+  "HAI": {
+    "epochs": 3,
+    "anormly_ratio": 0.98,
+    "runner": "run_hai_official_vs_v4_best.py"
+  },
+  "SMD": {
+    "epochs": 3,
+    "anormly_ratio": 0.9,
+    "runner": "run_smd_official_vs_v4_best.py"
+  },
+  "WADI": {
+    "epochs": 3,
+    "anormly_ratio": 0.5,
+    "runner": "run_wadi_official_default_vs_v4_best.py"
+  },
+  "PUMP": {
+    "epochs": 3,
+    "anormly_ratio": 0.5,
+    "runner": "run_pump_official_default_vs_v4_best.py"
+  },
+  "SKAB": {
+    "epochs": 3,
+    "anormly_ratio": 0.5,
+    "runner": "run_skab_official_default_vs_v4_best.py"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "default_seed": 42,
+  "default_score_mode": "combined",
+  "threshold_protocol": "percentile(train_score + test_score, 100 - anormly_ratio)",
+  "output_root": "results/FIXED_COMBINED",
+  "checkpoint_policy": "load_existing_checkpoint_by_default",
+  "point_adjustment": true
+}
