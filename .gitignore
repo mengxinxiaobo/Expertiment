@@ -146,3 +146,30 @@ temp/
 # !results/ALL_COMBINED_FIXED/summary.md
 # !results/ALL_COMBINED_FIXED/all_combined_fixed_metrics.json
 # !results/ALL_COMBINED_FIXED/all_combined_fixed_metrics.csv
+
+# =========================
+# Local legacy backup / restructuring
+# =========================
+legacy/
+archive/
+_restructure_backup/
+
+# Generated comparison runs
+comparison_runs/
+
+# Generated one-off experiment files
+score.txt
+pred.txt
+fact.txt
+discrepancy.txt
+*_score.txt
+*_pred.txt
+*_fact.txt
+*_discrepancy.txt
+
+# Archive packages
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
