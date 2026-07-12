@@ -126,6 +126,7 @@ class AdaptiveSparseAnchorCompetitiveModelV4(nn.Module):
         sigma_min: float = 0.03,
         sigma_max: float = 1.50,
         gap_weight: float = 1.0,
+        gather_backend: str = "shifted_stack",
     ) -> None:
         super().__init__()
         local_lags = sorted(set(int(v) for v in local_candidate_lags))
@@ -166,6 +167,14 @@ class AdaptiveSparseAnchorCompetitiveModelV4(nn.Module):
             sigma_max=sigma_max,
         )
 
+        # 推理 gather 后端。
+        # advanced_index: 原始高级索引实现，完全保留旧路径。
+        # cached_index  : 缓存 index tensor，减少重复索引构造开销。
+        # shifted_stack : 用规则 shift/stack 替代高级索引，通常更硬件友好。
+        self.gather_backend = "advanced_index"
+        self._gather_index_cache: Dict[Tuple[str, int, int, Tuple[int, ...]], Tuple[torch.Tensor, torch.Tensor, torch.Tensor]] = {}
+        self.set_gather_backend(gather_backend)
+
     @staticmethod
     def _sequence_sketch(x: torch.Tensor) -> torch.Tensor:
         mean = x.mean(dim=-1)
@@ -174,9 +183,82 @@ class AdaptiveSparseAnchorCompetitiveModelV4(nn.Module):
         mean_abs = x.abs().mean(dim=-1)
         return torch.stack([mean, std, rms, mean_abs], dim=-1)
 
+    def set_gather_backend(self, backend: str) -> None:
+        """切换 V4 的对称锚点 gather 实现，不改变参数和数学定义。"""
+        valid = {"advanced_index", "cached_index", "shifted_stack"}
+        if backend not in valid:
+            raise ValueError(f"未知 gather_backend={backend!r}，可选：{sorted(valid)}")
+        self.gather_backend = backend
+
+    def clear_gather_cache(self) -> None:
+        """清空 cached_index 后端使用的索引缓存。"""
+        self._gather_index_cache.clear()
+
     @staticmethod
-    def _symmetric_gather(x: torch.Tensor, lags: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
-        """返回复制边界后的前向/后向锚点，形状均为 [B,L,K,...]。"""
+    def _lags_to_tuple(lags: torch.Tensor) -> Tuple[int, ...]:
+        # lags 很短；转为 tuple 便于缓存和 shifted_stack 循环。
+        return tuple(int(v) for v in lags.detach().cpu().tolist())
+
+    @staticmethod
+    def _shift_left_replicate(x: torch.Tensor, lag: int) -> torch.Tensor:
+        """left[t] = x[max(t-lag, 0)]，边界复制。"""
+        if lag <= 0:
+            return x
+        batch = x.shape[0]
+        tail_shape = tuple(x.shape[2:])
+        pad = x[:, :1, ...].expand(batch, lag, *tail_shape)
+        return torch.cat([pad, x[:, :-lag, ...]], dim=1)
+
+    @staticmethod
+    def _shift_right_replicate(x: torch.Tensor, lag: int) -> torch.Tensor:
+        """right[t] = x[min(t+lag, L-1)]，边界复制。"""
+        if lag <= 0:
+            return x
+        batch = x.shape[0]
+        tail_shape = tuple(x.shape[2:])
+        pad = x[:, -1:, ...].expand(batch, lag, *tail_shape)
+        return torch.cat([x[:, lag:, ...], pad], dim=1)
+
+    def _symmetric_gather_shifted_stack(
+        self,
+        x: torch.Tensor,
+        lags: torch.Tensor,
+    ) -> Tuple[torch.Tensor, torch.Tensor]:
+        """用规则 shift + stack 构造对称锚点，避免高级索引。"""
+        lag_values = self._lags_to_tuple(lags)
+        left_parts = [self._shift_left_replicate(x, lag) for lag in lag_values]
+        right_parts = [self._shift_right_replicate(x, lag) for lag in lag_values]
+        return torch.stack(left_parts, dim=2), torch.stack(right_parts, dim=2)
+
+    def _get_cached_gather_indices(
+        self,
+        batch: int,
+        length: int,
+        lags: torch.Tensor,
+        device: torch.device,
+    ) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+        lag_values = self._lags_to_tuple(lags)
+        key = (str(device), int(batch), int(length), lag_values)
+        cached = self._gather_index_cache.get(key)
+        if cached is not None:
+            return cached
+
+        lag_tensor = torch.tensor(lag_values, dtype=torch.long, device=device)
+        time = torch.arange(length, device=device).view(1, length, 1)
+        lag_view = lag_tensor.view(1, 1, -1)
+        left_index = (time - lag_view).clamp(0, length - 1).expand(batch, -1, -1)
+        right_index = (time + lag_view).clamp(0, length - 1).expand(batch, -1, -1)
+        batch_index = torch.arange(batch, device=device).view(batch, 1, 1).expand_as(left_index)
+        cached = (batch_index, left_index, right_index)
+        self._gather_index_cache[key] = cached
+        return cached
+
+    def _symmetric_gather_advanced_index(
+        self,
+        x: torch.Tensor,
+        lags: torch.Tensor,
+    ) -> Tuple[torch.Tensor, torch.Tensor]:
+        """原始高级索引 gather 实现。"""
         batch, length = x.shape[:2]
         time = torch.arange(length, device=x.device).view(1, length, 1)
         lag_view = lags.view(1, 1, -1)
@@ -184,6 +266,31 @@ class AdaptiveSparseAnchorCompetitiveModelV4(nn.Module):
         right_index = (time + lag_view).clamp(0, length - 1).expand(batch, -1, -1)
         batch_index = torch.arange(batch, device=x.device).view(batch, 1, 1).expand_as(left_index)
         return x[batch_index, left_index], x[batch_index, right_index]
+
+    def _symmetric_gather_cached_index(
+        self,
+        x: torch.Tensor,
+        lags: torch.Tensor,
+    ) -> Tuple[torch.Tensor, torch.Tensor]:
+        """缓存高级索引 tensor，减少每次 forward 重复构造 index 的开销。"""
+        batch, length = x.shape[:2]
+        batch_index, left_index, right_index = self._get_cached_gather_indices(
+            batch=batch,
+            length=length,
+            lags=lags,
+            device=x.device,
+        )
+        return x[batch_index, left_index], x[batch_index, right_index]
+
+    def _symmetric_gather(self, x: torch.Tensor, lags: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+        """返回复制边界后的前向/后向锚点，形状均为 [B,L,K,...]。"""
+        if self.gather_backend == "advanced_index":
+            return self._symmetric_gather_advanced_index(x, lags)
+        if self.gather_backend == "cached_index":
+            return self._symmetric_gather_cached_index(x, lags)
+        if self.gather_backend == "shifted_stack":
+            return self._symmetric_gather_shifted_stack(x, lags)
+        raise RuntimeError(f"非法 gather_backend: {self.gather_backend!r}")
 
     def _candidate_group(
         self,
@@ -373,6 +480,7 @@ class AdaptiveSparseAnchorSolverV4(Solver):  # type: ignore[misc]
             sigma_min=self.sigma_min,
             sigma_max=self.sigma_max,
             gap_weight=self.gap_weight,
+            gather_backend=getattr(self, "gather_backend", "shifted_stack"),
         )
         if torch.cuda.is_available():
             self.model.cuda()
@@ -460,6 +568,7 @@ class AdaptiveSparseAnchorSolverV4(Solver):  # type: ignore[misc]
                     "global_topk": self.global_topk,
                     "selector_hidden": self.selector_hidden,
                     "fitter_hidden": self.fitter_hidden,
+                    "gather_backend": getattr(self.model, "gather_backend", "unknown"),
                 },
             },
             self.checkpoint_path,
@@ -781,6 +890,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--area_weight", type=float, default=0.1)
     parser.add_argument("--selector_balance_weight", type=float, default=0.05)
     parser.add_argument("--gap_weight", type=float, default=1.0)
+    parser.add_argument(
+        "--gather_backend",
+        choices=["advanced_index", "cached_index", "shifted_stack"],
+        default="shifted_stack",
+        help="V4 symmetric gather backend used for inference/training; shifted_stack is the optimized default.",
+    )
     parser.add_argument(
         "--relation_input", choices=["standardized", "instance"], default="instance"
     )

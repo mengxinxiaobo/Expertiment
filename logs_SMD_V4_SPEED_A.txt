@@ -1,0 +1,94 @@
+[variant] speed_a
+[config] {
+  "local_candidate_lags": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "global_candidate_lags": [
+    12,
+    24,
+    36,
+    48
+  ],
+  "local_topk": 1,
+  "global_topk": 2,
+  "anormly_ratio": 0.9,
+  "epochs": 3
+}
+Adaptive sparse-anchor V4 training: local 1/4, global 2/4
+Epoch [01/03] loss=0.018609, fit=0.013450, local_fit=0.008613, global_fit=0.004837, gap=0.008212, area=0.023346, coverage=0.056489, sigma=0.217725, time=88.629s
+Epoch [02/03] loss=0.017275, fit=0.013452, local_fit=0.009440, global_fit=0.004012, gap=0.007776, area=0.007765, coverage=0.060922, sigma=0.202029, time=96.039s
+Epoch [03/03] loss=0.017303, fit=0.013501, local_fit=0.009516, global_fit=0.003985, gap=0.007836, area=0.007277, coverage=0.061499, sigma=0.201596, time=87.064s
+Local anchor occupancy : [0.072, 0.095, 0.194, 0.64]
+Global anchor occupancy: [0.315, 0.215, 0.229, 0.241]
+Saved checkpoint: /mnt/c/Users/DING/Desktop/Experiment/CODE/checkpoints/SMD_V4_SPEED_A/V4/SMD_adaptive_anchor_v4_l1-2-4-8_g12-24-36-48_kl1_kg2.pt
+
+========================================================
+Score mode          : combined
+Score normalization : official
+Threshold source    : original
+Threshold estimator : exact
+Threshold samples   : 71539000
+anormly_ratio       : 0.9
+Threshold           : 0.023976180987432705
+RAW  Accuracy=0.9509, Precision=0.0855, Recall=0.0187, F1=0.0307, MCC=0.0211
+pa_accuracy           : 0.9898
+pa_precision          : 0.8267
+pa_recall             : 0.9545
+pa_f_score            : 0.8860
+MCC_score             : 0.0211
+Affiliation precision : 0.5411
+Affiliation recall    : 0.9762
+R_AUC_ROC             : 0.6265
+R_AUC_PR              : 0.0770
+VUS_ROC               : 0.6178
+VUS_PR                : 0.0773
+PA   Accuracy=0.9898, Precision=0.8267, Recall=0.9545, F1=0.8860, MCC=0.8832
+[saved] results/SMD_V4_SPEED_A/summary.json
+[saved] results/SMD_V4_SPEED_A/summary.md
+
+[done]
+# speed_a on SMD
+
+## Config
+
+- local_candidate_lags: `[1, 2, 4, 8]`
+- global_candidate_lags: `[12, 24, 36, 48]`
+- local_topk/global_topk: `1 / 2`
+- seq_len: `100`
+- batch_size: `128`
+- epochs: `3`
+- anormly_ratio: `0.9`
+- checkpoint: `/mnt/c/Users/DING/Desktop/Experiment/CODE/checkpoints/SMD_V4_SPEED_A/V4/SMD_adaptive_anchor_v4_l1-2-4-8_g12-24-36-48_kl1_kg2.pt`
+
+## Accuracy
+
+| Metric | Value |
+|---|---:|
+| PA Accuracy | 0.989791 |
+| PA Precision | 0.826685 |
+| PA Recall | 0.954490 |
+| PA F1 | 0.886003 |
+
+## Lightweight / Latency
+
+| Metric | Value |
+|---|---:|
+| Trainable Params | 146 |
+| Total Params | 146 |
+| Batch=1 Mean Latency ms | 4.933161 |
+| Batch=1 P95 Latency ms | 5.743090 |
+| Batch=128 Mean Latency ms | 5.568813 |
+| Batch=128 P95 Latency ms | 8.137453 |
+| Full-test Seconds Mean | 0.661689 |
+| Full-test Throughput points/s | 1070593.32 |
+| CPU Max RSS MiB | 3555.29 |
+| Full-test GPU Peak Allocated MiB | 51.94 |
+| Full-test GPU Peak Reserved MiB | 68.00 |
+
+## Reference Target
+
+- 当前 iTransformer / SMD / batch=128 mean latency 约为 `1.967984 ms`。
+- 如果 Speed-A 的 batch=128 mean latency 小于该值，则速度超过当前 iTransformer 小配置。

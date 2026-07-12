@@ -1,0 +1,17 @@
+[root] /mnt/c/Users/DING/Desktop/Experiment/CODE
+[teacher_checkpoint] /mnt/c/Users/DING/Desktop/Experiment/CODE/checkpoints/SMD/SMD_adaptive_anchor_v4_l1-2-3-4-5-6-7-8_g12-16-20-24-28-32-40-48_kl2_kg4.pt
+[out_dir] /mnt/c/Users/DING/Desktop/Experiment/CODE/results/SMD_ASCA_MICROFAST_H48_K15
+[student params] {
+  "total_params": 2529,
+  "trainable_params": 2529,
+  "param_bytes": 10116,
+  "param_mib": 0.009647369384765625
+}
+[training MicroFast student]
+Epoch [001/020] teacher_mse=0.0000012738, time=65.055s
+Epoch [002/020] teacher_mse=0.0000009872, time=60.194s
+Epoch [003/020] teacher_mse=0.0000009580, time=63.317s
+Epoch [004/020] teacher_mse=0.0000009468, time=63.523s
+Epoch [005/020] teacher_mse=0.0000009402, time=62.945s
+Epoch [006/020] teacher_mse=0.0000009354, time=62.930s
+Epoch [007/020] teacher_mse=0.0000009313, time=62.012s

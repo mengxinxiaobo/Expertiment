@@ -1,0 +1,59 @@
+[root] /mnt/c/Users/DING/Desktop/Experiment/CODE
+[out_dir] /mnt/c/Users/DING/Desktop/Experiment/CODE/results/SMD_ASCA_SCORE_ONLY_FAST
+Loaded checkpoint: /mnt/c/Users/DING/Desktop/Experiment/CODE/checkpoints/SMD/SMD_adaptive_anchor_v4_l1-2-3-4-5-6-7-8_g12-16-20-24-28-32-40-48_kl2_kg4.pt
+[params] {
+  "total_params": 146,
+  "trainable_params": 146,
+  "param_bytes": 584,
+  "param_mib": 0.00055694580078125
+}
+[equivalence] {
+  "checked_batches": 5,
+  "max_abs_diff": 0.0,
+  "max_rel_diff": 0.0
+}
+[saved] /mnt/c/Users/DING/Desktop/Experiment/CODE/results/SMD_ASCA_SCORE_ONLY_FAST/summary.json
+[saved] /mnt/c/Users/DING/Desktop/Experiment/CODE/results/SMD_ASCA_SCORE_ONLY_FAST/summary.md
+
+[done]
+# ASCA-AD Score-only Fast Inference on SMD
+
+## Checkpoint
+
+`/mnt/c/Users/DING/Desktop/Experiment/CODE/checkpoints/SMD/SMD_adaptive_anchor_v4_l1-2-3-4-5-6-7-8_g12-16-20-24-28-32-40-48_kl2_kg4.pt`
+
+## Parameters
+
+| Metric | Value |
+|---|---:|
+| Trainable Params | 146 |
+| Total Params | 146 |
+| Param Size MiB | 0.000557 |
+
+## Equivalence Check
+
+| Metric | Value |
+|---|---:|
+| Checked Batches | 5 |
+| Max Abs Diff | 0 |
+| Max Rel Diff | 0 |
+
+## Detection Metrics
+
+| Path | PA Precision | PA Recall | PA F1 | PA Accuracy | RAW F1 |
+|---|---:|---:|---:|---:|---:|
+| Original forward | 0.829165 | 0.967124 | 0.892847 | 0.990351 | 0.029575 |
+| Score-only fast | 0.829165 | 0.967124 | 0.892847 | 0.990351 | 0.029575 |
+
+## Latency / Throughput
+
+| Metric | Original forward | Score-only fast | Speedup |
+|---|---:|---:|---:|
+| Batch=1 Mean ms | 5.405745 | 4.169436 | 1.297x |
+| Batch=128 Mean ms | 5.585247 | 4.260584 | 1.311x |
+| Full-test Seconds | 0.634674 | 0.520762 | 1.219x |
+| Full-test Throughput points/s | 1116164.25 | 1360314.12 | 1.219x |
+| Full-test GPU Peak Allocated MiB | 75.65 | 75.65 | - |
+| Full-test GPU Peak Reserved MiB | 94.00 | 92.00 | - |
+| CPU Max RSS MiB | 3895.15 | 3895.15 | - |
+

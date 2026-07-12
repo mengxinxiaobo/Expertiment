@@ -1,0 +1,136 @@
+[root] /mnt/c/Users/DING/Desktop/Experiment/CODE
+[out_dir] /mnt/c/Users/DING/Desktop/Experiment/CODE/results/PSM_FASTDIRECT_H24_K9_E10_OFFICIAL
+[model params] {
+  "total_params": 1499,
+  "trainable_params": 1499,
+  "param_bytes": 5996,
+  "param_mib": 0.005718231201171875
+}
+Epoch [001/010] recon_loss=0.22435026, time=6.361s
+Epoch [002/010] recon_loss=0.07394322, time=5.189s
+Epoch [003/010] recon_loss=0.07187332, time=4.680s
+Epoch [004/010] recon_loss=0.07136794, time=4.559s
+Epoch [005/010] recon_loss=0.07070024, time=4.469s
+Epoch [006/010] recon_loss=0.07035339, time=4.622s
+Epoch [007/010] recon_loss=0.07023781, time=5.053s
+Epoch [008/010] recon_loss=0.07014094, time=5.447s
+Epoch [009/010] recon_loss=0.07009236, time=5.187s
+Epoch [010/010] recon_loss=0.07002855, time=4.771s
+[saved] /mnt/c/Users/DING/Desktop/Experiment/CODE/results/PSM_FASTDIRECT_H24_K9_E10_OFFICIAL/summary.json
+[saved] /mnt/c/Users/DING/Desktop/Experiment/CODE/results/PSM_FASTDIRECT_H24_K9_E10_OFFICIAL/summary.md
+
+[done]
+# ASCA-AD-FastDirect / MicroRecon-AD on PSM
+
+## Config
+
+- checkpoint: `/mnt/c/Users/DING/Desktop/Experiment/CODE/results/PSM_FASTDIRECT_H24_K9_E10_OFFICIAL/fastdirect_recon.pt`
+- hidden: `24`
+- kernel_size: `9`
+- residual: `False`
+- mask_ratio: `0.1`
+- noise_std: `0.02`
+- train_epochs: `10`
+- anormly_ratio: `0.8`
+- score_modes: `['raw', 'official']`
+- primary_score: `official`
+
+## Parameter Budget
+
+- Param budget: `2561`
+- Trainable params: `1499`
+- Under budget: `True`
+
+## Accuracy (official)
+
+| Metric | Value |
+|---|---:|
+| Threshold | 0.0200427492 |
+| RAW Accuracy | 0.720319 |
+| RAW Precision | 0.332268 |
+| RAW Recall | 0.008543 |
+| RAW F1 | 0.016659 |
+| PA Accuracy | 0.993679 |
+| PA Precision | 0.983027 |
+| PA Recall | 0.994373 |
+| PA F1 | 0.988667 |
+
+## Accuracy by Score Mode
+
+| Score | PA Precision | PA Recall | PA F1 | PA Accuracy | RAW F1 |
+|---|---:|---:|---:|---:|---:|
+| raw | 0.987467 | 0.974123 | 0.980750 | 0.989396 | 0.029895 |
+| official | 0.983027 | 0.994373 | 0.988667 | 0.993679 | 0.016659 |
+
+## Lightweight / Latency
+
+| Metric | Value |
+|---|---:|
+| Trainable Params | 1499 |
+| Total Params | 1499 |
+| Param Size MiB | 0.005718 |
+| Batch=1 Mean Latency ms | 0.500399 |
+| Batch=1 P95 Latency ms | 0.619728 |
+| Batch=128 Mean Latency ms | 0.692194 |
+| Batch=128 P95 Latency ms | 1.178762 |
+| Full-test Seconds Mean | 0.243090 |
+| Full-test Throughput points/s | 361183.30 |
+| CPU Max RSS MiB | 2491.04 |
+| Full-test GPU Peak Allocated MiB | 6.20 |
+| Full-test GPU Peak Reserved MiB | 22.00 |
+
+## Training History
+```json
+[
+  {
+    "epoch": 1,
+    "train_recon_loss": 0.22435025953584248,
+    "seconds": 6.360846366998885
+  },
+  {
+    "epoch": 2,
+    "train_recon_loss": 0.07394321588934331,
+    "seconds": 5.1888574799995695
+  },
+  {
+    "epoch": 3,
+    "train_recon_loss": 0.0718733207759074,
+    "seconds": 4.679675920000591
+  },
+  {
+    "epoch": 4,
+    "train_recon_loss": 0.07136793574273298,
+    "seconds": 4.559219563001534
+  },
+  {
+    "epoch": 5,
+    "train_recon_loss": 0.07070023672304292,
+    "seconds": 4.468930350001756
+  },
+  {
+    "epoch": 6,
+    "train_recon_loss": 0.07035338661952871,
+    "seconds": 4.622088718999294
+  },
+  {
+    "epoch": 7,
+    "train_recon_loss": 0.07023781289656957,
+    "seconds": 5.053049805999763
+  },
+  {
+    "epoch": 8,
+    "train_recon_loss": 0.07014094133307969,
+    "seconds": 5.4469857229996705
+  },
+  {
+    "epoch": 9,
+    "train_recon_loss": 0.07009235665850018,
+    "seconds": 5.187191541001084
+  },
+  {
+    "epoch": 10,
+    "train_recon_loss": 0.07002854918080252,
+    "seconds": 4.771389214001829
+  }
+]
+```

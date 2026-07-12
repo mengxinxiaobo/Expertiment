@@ -1,0 +1,76 @@
+[root] /mnt/c/Users/DING/Desktop/Experiment/CODE
+[out_dir] /mnt/c/Users/DING/Desktop/Experiment/CODE/results/SMD_ASCA_GATHER_VARIANTS
+[backends] ['advanced_index', 'cached_index', 'shifted_stack']
+Loaded checkpoint: /mnt/c/Users/DING/Desktop/Experiment/CODE/checkpoints/SMD/SMD_adaptive_anchor_v4_l1-2-3-4-5-6-7-8_g12-16-20-24-28-32-40-48_kl2_kg4.pt
+[params] {
+  "total_params": 146,
+  "trainable_params": 146,
+  "param_bytes": 584,
+  "param_mib": 0.00055694580078125
+}
+[equivalence] {
+  "reference": "advanced_index",
+  "variants": {
+    "cached_index": {
+      "checked_batches": 5,
+      "max_abs_diff": 9.150756523013115e-05,
+      "max_rel_diff": 0.04703216254711151
+    },
+    "shifted_stack": {
+      "checked_batches": 5,
+      "max_abs_diff": 0.0,
+      "max_rel_diff": 0.0
+    }
+  }
+}
+[collect/eval] backend=advanced_index
+[collect/eval] backend=cached_index
+[collect/eval] backend=shifted_stack
+[benchmark] backend=advanced_index
+[benchmark] backend=cached_index
+[benchmark] backend=shifted_stack
+[saved] /mnt/c/Users/DING/Desktop/Experiment/CODE/results/SMD_ASCA_GATHER_VARIANTS/summary.json
+[saved] /mnt/c/Users/DING/Desktop/Experiment/CODE/results/SMD_ASCA_GATHER_VARIANTS/summary.md
+
+[done]
+# ASCA-AD V4 Gather Backend Benchmark on SMD
+
+## Checkpoint
+
+`/mnt/c/Users/DING/Desktop/Experiment/CODE/checkpoints/SMD/SMD_adaptive_anchor_v4_l1-2-3-4-5-6-7-8_g12-16-20-24-28-32-40-48_kl2_kg4.pt`
+
+## Parameters
+
+| Metric | Value |
+|---|---:|
+| Trainable Params | 146 |
+| Total Params | 146 |
+| Param Size MiB | 0.000557 |
+
+## Equivalence Check
+
+Reference backend: `advanced_index`
+
+| Backend | Checked Batches | Max Abs Diff | Max Rel Diff |
+|---|---:|---:|---:|
+| cached_index | 5 | 9.15075652301e-05 | 0.0470321625471 |
+| shifted_stack | 5 | 0 | 0 |
+
+## Detection Metrics
+
+| Backend | PA Precision | PA Recall | PA F1 | PA Accuracy | RAW F1 |
+|---|---:|---:|---:|---:|---:|
+| advanced_index | 0.829165 | 0.967124 | 0.892847 | 0.990351 | 0.029575 |
+| cached_index | 0.829165 | 0.967124 | 0.892847 | 0.990351 | 0.029575 |
+| shifted_stack | 0.829165 | 0.967124 | 0.892847 | 0.990351 | 0.029575 |
+
+## Latency / Throughput
+
+| Backend | Batch=1 ms | Speedup vs ref | Batch=N ms | Speedup vs ref | Full-test s | Speedup vs ref | GPU Peak MiB |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| advanced_index | 3.733573 | 1.000x | 4.242327 | 1.000x | 0.511174 | 1.000x | 75.65 |
+| cached_index | 3.577164 | 1.044x | 4.196899 | 1.011x | 0.517106 | 0.989x | 75.70 |
+| shifted_stack | 4.990318 | 0.748x | 5.444113 | 0.779x | 0.600488 | 0.851x | 75.65 |
+
+CPU Max RSS MiB: `3569.57`
+

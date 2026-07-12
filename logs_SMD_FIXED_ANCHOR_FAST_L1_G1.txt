@@ -1,0 +1,169 @@
+[root] /mnt/c/Users/DING/Desktop/Experiment/CODE
+[checkpoint] /mnt/c/Users/DING/Desktop/Experiment/CODE/checkpoints/SMD/SMD_adaptive_anchor_v4_l1-2-3-4-5-6-7-8_g12-16-20-24-28-32-40-48_kl2_kg4.pt
+[ok] loaded original ASCA-AD model
+[original model kwargs]
+{
+  "local_candidate_lags": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "global_candidate_lags": [
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    40,
+    48
+  ],
+  "local_topk": 2,
+  "global_topk": 4,
+  "selector_hidden": 8,
+  "fitter_hidden": 8,
+  "selector_temperature": 0.5,
+  "similarity_tau": 1.0,
+  "sigma_min": 0.03,
+  "sigma_max": 1.5,
+  "gap_weight": 1.0
+}
+[fixed_local_lags] [8]
+[fixed_global_lags] [12]
+[evaluation]
+{
+  "threshold": 0.02242796500585975,
+  "threshold_samples": 71539000,
+  "test_points": 708400,
+  "raw_accuracy": 0.9504658385093168,
+  "raw_precision": 0.058077645585472765,
+  "raw_recall": 0.012600190191550061,
+  "raw_f1": 0.020707747265014512,
+  "raw_mcc": 0.007892419509668638,
+  "pa_accuracy": 0.9880533596837945,
+  "pa_precision": 0.8177495077994851,
+  "pa_recall": 0.9169270479554409,
+  "pa_f1": 0.8645031140428121,
+  "pa_mcc": 0.8598144874771196
+}
+[saved] /mnt/c/Users/DING/Desktop/Experiment/CODE/results/SMD_FIXED_ANCHOR_FAST_L1_G1/summary.json
+[saved] /mnt/c/Users/DING/Desktop/Experiment/CODE/results/SMD_FIXED_ANCHOR_FAST_L1_G1/summary.md
+
+[done]
+# ASCA-AD Fixed-Anchor Fast: SMD
+
+## Fixed Anchors
+
+- fixed_local_lags: `[8]`
+- fixed_global_lags: `[12]`
+- checkpoint: `/mnt/c/Users/DING/Desktop/Experiment/CODE/checkpoints/SMD/SMD_adaptive_anchor_v4_l1-2-3-4-5-6-7-8_g12-16-20-24-28-32-40-48_kl2_kg4.pt`
+- score_normalization: `official`
+- threshold_source: `original`
+- anormly_ratio: `0.9`
+
+## Accuracy
+
+| Metric | Value |
+|---|---:|
+| Threshold | 0.0224279650 |
+| RAW Accuracy | 0.950466 |
+| RAW Precision | 0.058078 |
+| RAW Recall | 0.012600 |
+| RAW F1 | 0.020708 |
+| PA Accuracy | 0.988053 |
+| PA Precision | 0.817750 |
+| PA Recall | 0.916927 |
+| PA F1 | 0.864503 |
+
+## Lightweight / Latency
+
+| Metric | Value |
+|---|---:|
+| Active Params in Fast Model | 81 |
+| Batch=1 Mean Latency ms | 2.433326 |
+| Batch=1 P95 Latency ms | 2.929713 |
+| Batch=128 Mean Latency ms | 3.191377 |
+| Batch=128 P95 Latency ms | 5.646812 |
+| Full-test Seconds Mean | 0.460764 |
+| Full-test Throughput points/s | 1537445.34 |
+| CPU Max RSS MiB | 3610.45 |
+| Full-test GPU Peak Allocated MiB | 19.06 |
+| Full-test GPU Peak Reserved MiB | 42.00 |
+| Speedup vs Original Batch=128 | 1.667x |
+
+## Reference
+
+- 当前 iTransformer / SMD / batch=128 mean latency 约为 `1.967984 ms`。
+- 若本脚本 Batch=128 Mean Latency ms 小于该值，则固定锚点快速版在该口径下超过 iTransformer。
+
+## Anchor Occupancy
+
+```json
+{
+  "local_candidate_lags": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "global_candidate_lags": [
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    40,
+    48
+  ],
+  "local_count": [
+    17920602,
+    17149614,
+    16255134,
+    16602021,
+    18481171,
+    17476743,
+    18050596,
+    19725319
+  ],
+  "global_count": [
+    36934104,
+    36424952,
+    35823356,
+    35330081,
+    34420722,
+    34982310,
+    34169199,
+    35237676
+  ],
+  "local_frequency": [
+    0.12650324859594583,
+    0.12106077034502037,
+    0.11474655021982025,
+    0.11719525882881128,
+    0.1304603589409097,
+    0.12337000533667652,
+    0.12742088871194088,
+    0.13924291902087516
+  ],
+  "global_frequency": [
+    0.13036069156550983,
+    0.12856361516067913,
+    0.1264402532238891,
+    0.12469921545207863,
+    0.12148958924532617,
+    0.12347174102718317,
+    0.12060182675284412,
+    0.12437306757248985
+  ]
+}
+```

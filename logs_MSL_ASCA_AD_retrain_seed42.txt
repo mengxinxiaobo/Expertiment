@@ -1,0 +1,62 @@
+
+================================================================================
+[MSL] Training
+================================================================================
+[MSL] runner : /mnt/c/Users/DING/Desktop/Experiment/CODE/scripts/dataset_runners/run_msl_official_vs_v4_best_v3.py
+[MSL] seed   : 42
+[MSL] epochs : 3
+MSL data check passed
+train shape : (58317, 55)
+test shape  : (73729, 55)
+label shape : (73729,)
+channels    : 55
+true anomaly ratio: 10.533169%
+Adaptive sparse-anchor V4 training: local 2/3, global 6/15
+Epoch [01/03] loss=0.002007, fit=0.000443, local_fit=0.000255, global_fit=0.000189, gap=0.000196, area=0.001476, coverage=0.028328, sigma=0.747898, time=5.482s
+Epoch [02/03] loss=0.000902, fit=0.000474, local_fit=0.000256, global_fit=0.000218, gap=0.000196, area=0.001408, coverage=0.005747, sigma=0.745091, time=4.403s
+Epoch [03/03] loss=0.000852, fit=0.000474, local_fit=0.000256, global_fit=0.000218, gap=0.000197, area=0.001401, coverage=0.004761, sigma=0.744963, time=4.269s
+Local anchor occupancy : [0.315, 0.373, 0.312]
+Global anchor occupancy: [0.069, 0.076, 0.075, 0.074, 0.072, 0.071, 0.062, 0.055, 0.053, 0.062, 0.062, 0.064, 0.067, 0.068, 0.07]
+Saved checkpoint: /mnt/c/Users/DING/Desktop/Experiment/CODE/checkpoints/MSL_OFFICIAL_VS_V4_BEST/V4/MSL_adaptive_anchor_v4_l1-2-3_g4-5-6-7-8-9-10-11-12-13-14-15-16-17-18_kl2_kg6.pt
+[MSL] training seconds: 17.067
+[MSL] checkpoint      : /mnt/c/Users/DING/Desktop/Experiment/CODE/checkpoints/MSL_OFFICIAL_VS_V4_BEST/V4/MSL_adaptive_anchor_v4_l1-2-3_g4-5-6-7-8-9-10-11-12-13-14-15-16-17-18_kl2_kg6.pt
+================================================================================
+ASCA-AD fixed-combined evaluation
+================================================================================
+Project root : /mnt/c/Users/DING/Desktop/Experiment/CODE
+Datasets     : MSL
+Output dir   : /mnt/c/Users/DING/Desktop/Experiment/CODE/results/FIXED_COMBINED/MSL
+Seed         : 42
+================================================================================
+
+================================================================================
+[MSL] Fixed combined evaluation
+================================================================================
+[MSL] runner         : /mnt/c/Users/DING/Desktop/Experiment/CODE/scripts/dataset_runners/run_msl_official_vs_v4_best_v3.py
+[MSL] anormly_ratio  : 0.83
+MSL data check passed
+train shape : (58317, 55)
+test shape  : (73729, 55)
+label shape : (73729,)
+channels    : 55
+true anomaly ratio: 10.533169%
+[MSL] loading checkpoint: /mnt/c/Users/DING/Desktop/Experiment/CODE/checkpoints/MSL_OFFICIAL_VS_V4_BEST/V4/MSL_adaptive_anchor_v4_l1-2-3_g4-5-6-7-8-9-10-11-12-13-14-15-16-17-18_kl2_kg6.pt
+[MSL] collecting train scores ...
+[MSL] collecting test scores ...
+[MSL] PA-Precision : 0.9255795038633591
+[MSL] PA-Recall    : 0.879217100180273
+[MSL] PA-F1        : 0.9018028131810077
+[MSL] Original PA-F1: 0.9623315575054842
+[MSL] PA-F1 diff   : -6.0529 pp
+[MSL] saved         : /mnt/c/Users/DING/Desktop/Experiment/CODE/results/FIXED_COMBINED/MSL/MSL/summary.md
+
+Global summary files:
+  /mnt/c/Users/DING/Desktop/Experiment/CODE/results/FIXED_COMBINED/MSL/summary.md
+  /mnt/c/Users/DING/Desktop/Experiment/CODE/results/FIXED_COMBINED/MSL/all_combined_fixed_metrics.csv
+  /mnt/c/Users/DING/Desktop/Experiment/CODE/results/FIXED_COMBINED/MSL/all_combined_fixed_metrics.json
+
+Done.
+Summary: /mnt/c/Users/DING/Desktop/Experiment/CODE/results/FIXED_COMBINED/MSL/summary.md
+
+Pipeline summary:
+/mnt/c/Users/DING/Desktop/Experiment/CODE/results/PIPELINE_RUNS/MSL_train-eval.json

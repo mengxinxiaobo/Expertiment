@@ -1,0 +1,109 @@
+[root] /mnt/c/Users/DING/Desktop/Experiment/CODE
+[teacher_checkpoint] /mnt/c/Users/DING/Desktop/Experiment/CODE/checkpoints/PSM/PSM_adaptive_anchor_v4_l1-2-3-4-5-6-7-8_g12-16-20-24-28-32-40-48_kl2_kg4.pt
+[out_dir] /mnt/c/Users/DING/Desktop/Experiment/CODE/results/PSM_ASCA_MICROFAST_H24_K9_E5
+[student params] {
+  "total_params": 899,
+  "trainable_params": 899,
+  "param_bytes": 3596,
+  "param_mib": 0.003429412841796875
+}
+[training MicroFast student]
+Epoch [001/005] teacher_mse=0.0000020592, time=12.702s
+Epoch [002/005] teacher_mse=0.0000012815, time=10.337s
+Epoch [003/005] teacher_mse=0.0000011467, time=11.047s
+Epoch [004/005] teacher_mse=0.0000010906, time=10.999s
+Epoch [005/005] teacher_mse=0.0000010687, time=11.867s
+[saved] /mnt/c/Users/DING/Desktop/Experiment/CODE/results/PSM_ASCA_MICROFAST_H24_K9_E5/summary.json
+[saved] /mnt/c/Users/DING/Desktop/Experiment/CODE/results/PSM_ASCA_MICROFAST_H24_K9_E5/summary.md
+
+[done]
+# ASCA-AD-MicroFast Distillation on PSM
+
+## Parameter Budget
+
+- PPLAD parameter budget: `2561`
+- Current parameter budget: `10000`
+- MicroFast trainable params: `899`
+- Under PPLAD budget: `True`
+- Under current budget: `True`
+
+## Config
+
+- teacher_checkpoint: `/mnt/c/Users/DING/Desktop/Experiment/CODE/checkpoints/PSM/PSM_adaptive_anchor_v4_l1-2-3-4-5-6-7-8_g12-16-20-24-28-32-40-48_kl2_kg4.pt`
+- student_checkpoint: `/mnt/c/Users/DING/Desktop/Experiment/CODE/results/PSM_ASCA_MICROFAST_H24_K9_E5/asca_microfast_student.pt`
+- hidden: `24`
+- kernel_size: `9`
+- train_epochs: `5`
+- anormly_ratio: `0.8`
+- teacher_score_normalization: `official`
+- student_score_normalization: `official`
+
+## Accuracy
+
+| Metric | Value |
+|---|---:|
+| Threshold | 0.0220144225 |
+| RAW Accuracy | 0.720125 |
+| RAW Precision | 0.295495 |
+| RAW Recall | 0.006736 |
+| RAW F1 | 0.013172 |
+| PA Accuracy | 0.992392 |
+| PA Precision | 0.984015 |
+| PA Recall | 0.988622 |
+| PA F1 | 0.986313 |
+
+## Lightweight / Latency
+
+| Metric | Value |
+|---|---:|
+| Trainable Params | 899 |
+| Total Params | 899 |
+| Param Size MiB | 0.003429 |
+| Batch=1 Mean Latency ms | 0.459021 |
+| Batch=1 P95 Latency ms | 0.668649 |
+| Batch=128 Mean Latency ms | 0.758106 |
+| Batch=128 P95 Latency ms | 0.878204 |
+| Full-test Seconds Mean | 0.212413 |
+| Full-test Throughput points/s | 413345.92 |
+| CPU Max RSS MiB | 2503.55 |
+| Full-test GPU Peak Allocated MiB | 15.37 |
+| Full-test GPU Peak Reserved MiB | 24.00 |
+
+## Reference
+
+- 当前 iTransformer / SMD / batch=128 mean latency 约为 `1.967984 ms`。
+- 若 Batch=128 Mean Latency ms 小于该值，则 ASCA-AD-MicroFast 在该口径下超过 iTransformer。
+- 若要严格证明比 PPLAD 参数更少，请设置 `--param-budget 2561`。
+- 若允许略高于 PPLAD，但仍远低于 iTransformer，可使用默认 `--param-budget 10000`。
+
+## Training History
+
+```json
+[
+  {
+    "epoch": 1,
+    "teacher_mse": 2.0591906131878624e-06,
+    "seconds": 12.70155488599994
+  },
+  {
+    "epoch": 2,
+    "teacher_mse": 1.2814657571138725e-06,
+    "seconds": 10.336624712999765
+  },
+  {
+    "epoch": 3,
+    "teacher_mse": 1.1467262144859875e-06,
+    "seconds": 11.046849627000483
+  },
+  {
+    "epoch": 4,
+    "teacher_mse": 1.0905725517387038e-06,
+    "seconds": 10.998923682000168
+  },
+  {
+    "epoch": 5,
+    "teacher_mse": 1.0687114688289292e-06,
+    "seconds": 11.867025210000065
+  }
+]
+```
