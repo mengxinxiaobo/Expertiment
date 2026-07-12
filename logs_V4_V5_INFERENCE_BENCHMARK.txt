@@ -1,0 +1,19 @@
+ASCA-AD inference benchmark
+device      : cuda:0
+input shape : [B,100,38]
+warmup      : 50
+repeats     : 200
+
+ASCA-AD V4
+----------
+checkpoint : checkpoints/SMD/SMD_adaptive_anchor_v4_l1-2-3-4-5-6-7-8_g12-16-20-24-28-32-40-48_kl2_kg4.pt
+parameters : 146
+batch=1    mean=5.850796 ms  median=5.543456 ms  p95=7.742656 ms  peak=9.65 MiB
+batch=128  mean=5.674523 ms  median=5.312000 ms  p95=7.838048 ms  peak=74.85 MiB
+
+Hierarchical ASCA-AD V5
+-----------------------
+checkpoint : checkpoints/SMD/SMD_hierarchical_asca_v5_l1-2-3-4-5-6-7-8_g12-16-20-24-28-32-40-48_rl4_rg4_kl2_kg4.pt
+parameters : 385
+batch=1    mean=6.058871 ms  median=5.922688 ms  p95=6.935552 ms  peak=9.40 MiB
+batch=128  mean=7.141288 ms  median=6.402288 ms  p95=11.666720 ms  peak=43.06 MiB

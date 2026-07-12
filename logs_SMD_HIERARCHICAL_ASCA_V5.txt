@@ -1,0 +1,86 @@
+========== Hierarchical Adaptive Sparse Temporal Anchor Competitive Fitting V5 ==========
+Trainable parameters       : 385/800
+Coarse routed anchors      : local 8/4, global 8/4
+Point selected anchors     : local 4/2, global 4/4
+Relation fitter            : four-parameter analytical Gaussian
+Training routing           : hard-forward/soft-backward
+Evaluation routing         : selected-candidate gather only
+Hierarchical ASCA-AD V5 training: route local 4/8 -> point 2; route global 4/8 -> point 4
+Epoch [01/10] loss=0.026429, fit=0.012623, local_fit=0.006490, global_fit=0.006133, gap=0.008408, area=0.075414, point_cov=0.080679, route_cov=0.111529, sigma=0.280906, time=104.959s
+Epoch [02/10] loss=0.019049, fit=0.011407, local_fit=0.007070, global_fit=0.004337, gap=0.006877, area=0.010393, point_cov=0.029664, route_cov=0.255975, sigma=0.192582, time=110.221s
+Epoch [03/10] loss=0.017577, fit=0.010036, local_fit=0.006296, global_fit=0.003741, gap=0.006529, area=0.008381, point_cov=0.022371, route_cov=0.279208, sigma=0.191195, time=104.368s
+Epoch [04/10] loss=0.017676, fit=0.009570, local_fit=0.006010, global_fit=0.003560, gap=0.006398, area=0.007850, point_cov=0.026023, route_cov=0.300994, sigma=0.190642, time=98.981s
+Epoch [05/10] loss=0.017898, fit=0.009489, local_fit=0.006016, global_fit=0.003473, gap=0.006332, area=0.007760, point_cov=0.027727, route_cov=0.312320, sigma=0.190529, time=106.738s
+Epoch [06/10] loss=0.017466, fit=0.009447, local_fit=0.006005, global_fit=0.003442, gap=0.006304, area=0.007663, point_cov=0.025639, route_cov=0.298552, sigma=0.190417, time=102.725s
+Epoch [07/10] loss=0.016564, fit=0.009423, local_fit=0.005988, global_fit=0.003435, gap=0.006289, area=0.007608, point_cov=0.021363, route_cov=0.265603, sigma=0.190296, time=97.422s
+Epoch [08/10] loss=0.015001, fit=0.009423, local_fit=0.005974, global_fit=0.003449, gap=0.006289, area=0.007545, point_cov=0.015316, route_cov=0.202879, sigma=0.190166, time=100.138s
+Epoch [09/10] loss=0.013320, fit=0.009448, local_fit=0.005971, global_fit=0.003477, gap=0.006305, area=0.007511, point_cov=0.010487, route_cov=0.129799, sigma=0.190035, time=108.810s
+Epoch [10/10] loss=0.012095, fit=0.009468, local_fit=0.005971, global_fit=0.003497, gap=0.006317, area=0.007523, point_cov=0.006981, route_cov=0.076274, sigma=0.189928, time=97.062s
+Saved checkpoint: checkpoints/SMD/SMD_hierarchical_asca_v5_l1-2-3-4-5-6-7-8_g12-16-20-24-28-32-40-48_rl4_rg4_kl2_kg4.pt
+
+========================================================
+Score mode          : gap
+Score normalization : official
+Threshold source    : original
+Threshold estimator : exact
+Threshold samples   : 71539000
+anormly_ratio       : 0.9
+Threshold           : 0.02450289582274856
+RAW  Accuracy=0.9508, Precision=0.0820, Recall=0.0179, F1=0.0294, MCC=0.0194
+pa_accuracy           : 0.9897
+pa_precision          : 0.8262
+pa_recall             : 0.9530
+pa_f_score            : 0.8851
+MCC_score             : 0.0194
+Affiliation precision : 0.5392
+Affiliation recall    : 0.9774
+R_AUC_ROC             : 0.6279
+R_AUC_PR              : 0.0773
+VUS_ROC               : 0.6179
+VUS_PR                : 0.0775
+PA   Accuracy=0.9897, Precision=0.8262, Recall=0.9530, F1=0.8851, MCC=0.8822
+
+========================================================
+Score mode          : total
+Score normalization : official
+Threshold source    : original
+Threshold estimator : exact
+Threshold samples   : 71539000
+anormly_ratio       : 0.9
+Threshold           : 0.022293249262496873
+RAW  Accuracy=0.9511, Precision=0.0909, Recall=0.0197, F1=0.0324, MCC=0.0236
+pa_accuracy           : 0.9899
+pa_precision          : 0.8285
+pa_recall             : 0.9535
+pa_f_score            : 0.8866
+MCC_score             : 0.0236
+Affiliation precision : 0.5525
+Affiliation recall    : 0.9766
+R_AUC_ROC             : 0.6129
+R_AUC_PR              : 0.0739
+VUS_ROC               : 0.6069
+VUS_PR                : 0.0747
+PA   Accuracy=0.9899, Precision=0.8285, Recall=0.9535, F1=0.8866, MCC=0.8837
+
+========================================================
+Score mode          : combined
+Score normalization : official
+Threshold source    : original
+Threshold estimator : exact
+Threshold samples   : 71539000
+anormly_ratio       : 0.9
+Threshold           : 0.02350021182186912
+RAW  Accuracy=0.9510, Precision=0.0869, Recall=0.0189, F1=0.0311, MCC=0.0217
+pa_accuracy           : 0.9898
+pa_precision          : 0.8274
+pa_recall             : 0.9531
+pa_f_score            : 0.8858
+MCC_score             : 0.0217
+Affiliation precision : 0.5457
+Affiliation recall    : 0.9771
+R_AUC_ROC             : 0.6150
+R_AUC_PR              : 0.0748
+VUS_ROC               : 0.6081
+VUS_PR                : 0.0754
+PA   Accuracy=0.9898, Precision=0.8274, Recall=0.9531, F1=0.8858, MCC=0.8829
+Model variant: Hierarchical ASCA-AD V5

@@ -1,0 +1,87 @@
+========== Reciprocal Adaptive Sparse Temporal Anchor Competitive Fitting V5 ==========
+Trainable parameters       : 264/800
+Anchor candidates/selected : local 8/2, global 8/4
+Reciprocal translator      : 7 -> 8 -> 6, shared
+Extra Top-k/router         : none
+Frequency branch           : none
+Primary combined score     : Gaussian score + reciprocal errors
+Reciprocal ASCA-AD V5 training: local 2/8, global 4/8, translator hidden=8
+Epoch [01/10] loss=0.009479, fit=0.005280, local_fit=0.003481, global_fit=0.001799, gap=0.003431, area=0.017215, coverage=0.026036, reciprocal=0.005878, l2g=0.003975, g2l=0.001903, rec_asym=0.002280, sigma=0.226438, time=119.369s
+Epoch [02/10] loss=0.008207, fit=0.005419, local_fit=0.003565, global_fit=0.001855, gap=0.003487, area=0.003971, coverage=0.033479, reciprocal=0.003584, l2g=0.003056, g2l=0.000528, rec_asym=0.002689, sigma=0.209873, time=105.264s
+Epoch [03/10] loss=0.008738, fit=0.005430, local_fit=0.003572, global_fit=0.001857, gap=0.003475, area=0.003864, coverage=0.043670, reciprocal=0.003693, l2g=0.003178, g2l=0.000515, rec_asym=0.002809, sigma=0.209882, time=100.748s
+Epoch [04/10] loss=0.009027, fit=0.005434, local_fit=0.003582, global_fit=0.001852, gap=0.003468, area=0.003841, coverage=0.049255, reciprocal=0.003732, l2g=0.003222, g2l=0.000510, rec_asym=0.002851, sigma=0.209848, time=112.402s
+Epoch [05/10] loss=0.008869, fit=0.005435, local_fit=0.003586, global_fit=0.001849, gap=0.003477, area=0.003834, coverage=0.046234, reciprocal=0.003694, l2g=0.003184, g2l=0.000511, rec_asym=0.002812, sigma=0.209838, time=108.721s
+Epoch [06/10] loss=0.008986, fit=0.005437, local_fit=0.003594, global_fit=0.001843, gap=0.003469, area=0.003834, coverage=0.048483, reciprocal=0.003707, l2g=0.003200, g2l=0.000507, rec_asym=0.002831, sigma=0.209832, time=108.742s
+Epoch [07/10] loss=0.009010, fit=0.005436, local_fit=0.003592, global_fit=0.001845, gap=0.003467, area=0.003823, coverage=0.049011, reciprocal=0.003703, l2g=0.003196, g2l=0.000507, rec_asym=0.002827, sigma=0.209827, time=110.000s
+Epoch [08/10] loss=0.008955, fit=0.005438, local_fit=0.003593, global_fit=0.001845, gap=0.003473, area=0.003826, coverage=0.047925, reciprocal=0.003695, l2g=0.003187, g2l=0.000508, rec_asym=0.002817, sigma=0.209826, time=116.412s
+Epoch [09/10] loss=0.008843, fit=0.005439, local_fit=0.003595, global_fit=0.001844, gap=0.003476, area=0.003827, coverage=0.045719, reciprocal=0.003673, l2g=0.003163, g2l=0.000509, rec_asym=0.002793, sigma=0.209837, time=108.299s
+Epoch [10/10] loss=0.008945, fit=0.005442, local_fit=0.003597, global_fit=0.001845, gap=0.003469, area=0.003824, coverage=0.047682, reciprocal=0.003686, l2g=0.003179, g2l=0.000506, rec_asym=0.002811, sigma=0.209869, time=111.447s
+Local anchor occupancy : [0.11, 0.1, 0.097, 0.107, 0.129, 0.135, 0.15, 0.172]
+Global anchor occupancy: [0.047, 0.057, 0.077, 0.094, 0.137, 0.167, 0.203, 0.217]
+Saved checkpoint: checkpoints/SMD/SMD_reciprocal_asca_v5_l1-2-3-4-5-6-7-8_g12-16-20-24-28-32-40-48_kl2_kg4_th8.pt
+
+========================================================
+Score mode          : gap
+Score normalization : official
+Threshold source    : original
+Threshold estimator : exact
+Threshold samples   : 71539000
+anormly_ratio       : 0.9
+Threshold           : 0.023883903801441342
+RAW  Accuracy=0.9509, Precision=0.0854, Recall=0.0187, F1=0.0307, MCC=0.0211
+pa_accuracy           : 0.9898
+pa_precision          : 0.8267
+pa_recall             : 0.9536
+pa_f_score            : 0.8856
+MCC_score             : 0.0211
+Affiliation precision : 0.5420
+Affiliation recall    : 0.9783
+R_AUC_ROC             : 0.6046
+R_AUC_PR              : 0.0719
+VUS_ROC               : 0.5967
+VUS_PR                : 0.0724
+PA   Accuracy=0.9898, Precision=0.8267, Recall=0.9536, F1=0.8856, MCC=0.8827
+
+========================================================
+Score mode          : total
+Score normalization : official
+Threshold source    : original
+Threshold estimator : exact
+Threshold samples   : 71539000
+anormly_ratio       : 0.9
+Threshold           : 0.0236543640997261
+RAW  Accuracy=0.9509, Precision=0.0862, Recall=0.0188, F1=0.0309, MCC=0.0214
+pa_accuracy           : 0.9898
+pa_precision          : 0.8269
+pa_recall             : 0.9533
+pa_f_score            : 0.8856
+MCC_score             : 0.0214
+Affiliation precision : 0.5435
+Affiliation recall    : 0.9776
+R_AUC_ROC             : 0.6220
+R_AUC_PR              : 0.0750
+VUS_ROC               : 0.6141
+VUS_PR                : 0.0755
+PA   Accuracy=0.9898, Precision=0.8269, Recall=0.9533, F1=0.8856, MCC=0.8827
+
+========================================================
+Score mode          : combined
+Score normalization : official
+Threshold source    : original
+Threshold estimator : exact
+Threshold samples   : 71539000
+anormly_ratio       : 0.9
+Threshold           : 0.023386653663590606
+RAW  Accuracy=0.9509, Precision=0.0871, Recall=0.0190, F1=0.0312, MCC=0.0219
+pa_accuracy           : 0.9898
+pa_precision          : 0.8273
+pa_recall             : 0.9543
+pa_f_score            : 0.8863
+MCC_score             : 0.0219
+Affiliation precision : 0.5451
+Affiliation recall    : 0.9785
+R_AUC_ROC             : 0.6147
+R_AUC_PR              : 0.0770
+VUS_ROC               : 0.6080
+VUS_PR                : 0.0776
+PA   Accuracy=0.9898, Precision=0.8273, Recall=0.9543, F1=0.8863, MCC=0.8834
