@@ -1,0 +1,66 @@
+Resolved PPLAD class from: /mnt/c/Users/DING/Desktop/Experiment/CODE/BaselineModels/PPLAD-main/model/PPLAD.py
+
+================================================================================
+PPLAD: 161 parameters
+[PPLAD] epoch 1/2 loss=11656.392201 time=2.422s
+[PPLAD] epoch 2/2 loss=11538.282931 time=1.353s
+{
+  "model": "PPLAD",
+  "precision": 0.9876746096959738,
+  "recall": 0.601,
+  "f1": 0.747280074603668,
+  "pa_accuracy": 0.8576182136602452,
+  "parameters": 161,
+  "state_dict_kib": 3.2158203125,
+  "latency_batch1_ms": 5.770744809997268,
+  "latency_batch128_ms": 6.412661315007426,
+  "full_test_time_s": 0.013056637999397935,
+  "throughput_points_s": 437325.44321618613,
+  "gpu_peak_mib": 37.02490234375,
+  "gpu_incremental_mib": 19.70166015625,
+  "anomaly_ratio": 0.3
+}
+
+================================================================================
+ASCA-AD: 146 parameters
+[ASCA-AD] epoch 1/2 loss=0.042931 time=1.773s
+[ASCA-AD] epoch 2/2 loss=0.031899 time=1.596s
+{
+  "model": "ASCA-AD",
+  "precision": 0.9962546816479401,
+  "recall": 0.798,
+  "f1": 0.8861743475846752,
+  "pa_accuracy": 0.9281961471103327,
+  "parameters": 146,
+  "state_dict_kib": 4.8173828125,
+  "latency_batch1_ms": 4.884801094995055,
+  "latency_batch128_ms": 5.064867185001276,
+  "full_test_time_s": 0.008375734998480766,
+  "throughput_points_s": 681731.2153543193,
+  "gpu_peak_mib": 38.8349609375,
+  "gpu_incremental_mib": 21.5048828125,
+  "anomaly_ratio": 0.3
+}
+
+================================================================================
+LTFAD: 14,646 parameters
+[LTFAD] epoch 1/2 loss=2.019484 time=3.817s
+[LTFAD] epoch 2/2 loss=1.821141 time=3.662s
+{
+  "model": "LTFAD",
+  "precision": 0.9937926753569212,
+  "recall": 0.8005,
+  "f1": 0.8867349764608142,
+  "pa_accuracy": 0.9283712784588442,
+  "parameters": 14646,
+  "state_dict_kib": 65.1513671875,
+  "latency_batch1_ms": 4.975663499999428,
+  "latency_batch128_ms": 16.50501120499939,
+  "full_test_time_s": 0.01582854899970698,
+  "throughput_points_s": 360740.5833665299,
+  "gpu_peak_mib": 178.435546875,
+  "gpu_incremental_mib": 160.9375,
+  "anomaly_ratio": 0.3
+}
+
+Saved to /mnt/c/Users/DING/Desktop/Experiment/CODE/results/THREE_MODEL_BENCHMARK/SKAB
