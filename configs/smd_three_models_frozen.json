@@ -1,0 +1,93 @@
+{
+  "registration_status": "frozen before SMD formal three-model experiment",
+  "dataset": "SMD",
+  "data_path": "SMD",
+  "seed": 42,
+  "expected_shapes": {
+    "train": [708405, 38],
+    "test": [708420, 38],
+    "label": [708420]
+  },
+  "preprocessing": {
+    "dtype": "float32",
+    "scaler": "StandardScaler",
+    "fit": "train only",
+    "train": "transform",
+    "test": "transform"
+  },
+  "evaluation": {
+    "anomaly_ratio": 0.9,
+    "threshold_percentile": 99.1,
+    "threshold_rule": "percentile(concat(train_energy,test_energy),99.1)",
+    "independent_threshold_per_model": true,
+    "score_search": false,
+    "ratio_search": false,
+    "threshold_search": false,
+    "parameter_search": false,
+    "test_label_parameter_selection": false
+  },
+  "asca": {
+    "model": "ASCA-AD V4",
+    "training": false,
+    "checkpoint": "checkpoints/SMD/SMD_adaptive_anchor_v4_l1-2-3-4-5-6-7-8_g12-16-20-24-28-32-40-48_kl2_kg4.pt",
+    "checkpoint_sha256": "65f50fb09cff649a4e0985b4c77771f02501c5c7108d7a3e9e5421cdfe314b51",
+    "input_c": 38,
+    "output_c": 38,
+    "win_size": 100,
+    "batch_size": 128,
+    "score_mode": "total",
+    "local_candidate_lags": [1, 2, 3, 4, 5, 6, 7, 8],
+    "global_candidate_lags": [12, 16, 20, 24, 28, 32, 40, 48],
+    "local_topk": 2,
+    "global_topk": 4,
+    "checkpoint_modified": false
+  },
+  "pplad": {
+    "model": "PPLAD",
+    "configuration_status": "fixed SMD configuration",
+    "official_optimal_claimed": false,
+    "configuration_source": "BaselineModels/PPLAD-main/scripts/SMD.sh",
+    "input_c": 38,
+    "output_c": 38,
+    "win_size": 105,
+    "batch_size": 128,
+    "num_epochs": 3,
+    "lr": 0.0001,
+    "local_size": [7],
+    "global_size": [11],
+    "d_model": 128,
+    "r": 0.9,
+    "similar": "MSE",
+    "loss_fuc": "MSE",
+    "anormly_ratio": 0.9,
+    "index": 137
+  },
+  "ltfad": {
+    "model": "LTFAD",
+    "configuration_status": "fixed fallback configuration",
+    "official_optimal_claimed": false,
+    "official_smd_configuration_available": false,
+    "input_c": 38,
+    "output_c": 38,
+    "win_size": 90,
+    "batch_size": 128,
+    "num_epochs": 2,
+    "lr": 0.0001,
+    "local_size": [5],
+    "global_size": [13],
+    "d_model": 128,
+    "r": 0.1,
+    "loss_fuc": "MSE",
+    "anormly_ratio": 0.9,
+    "index": 137
+  },
+  "loader_audit": {
+    "training_allowed_files": ["dataset/SMD/SMD_train.npy"],
+    "training_forbidden_files": [
+      "dataset/SMD/SMD_test.npy",
+      "dataset/SMD/SMD_test_label.npy"
+    ],
+    "score_phase_label_access": false,
+    "dummy_labels": "in-memory zeros only"
+  }
+}

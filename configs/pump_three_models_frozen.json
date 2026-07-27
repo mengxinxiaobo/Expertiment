@@ -1,0 +1,91 @@
+{
+  "registration_status": "frozen before PUMP formal three-model experiment",
+  "dataset": "PUMP",
+  "data_path": "PUMP",
+  "seed": 42,
+  "expected_shapes": {
+    "train": [17155, 51],
+    "test": [203165, 51],
+    "label": [203165]
+  },
+  "preprocessing": {
+    "dtype": "float32",
+    "scaler": "StandardScaler",
+    "fit": "train only",
+    "train": "transform",
+    "test": "transform"
+  },
+  "evaluation": {
+    "anomaly_ratio": 0.5,
+    "threshold_percentile": 99.5,
+    "threshold_rule": "percentile(concat(train_energy,test_energy),99.5)",
+    "independent_threshold_per_model": true,
+    "score_search": false,
+    "ratio_search": false,
+    "threshold_search": false,
+    "test_label_parameter_selection": false
+  },
+  "asca": {
+    "model": "ASCA-AD V4",
+    "training": false,
+    "checkpoint": "checkpoints/PUMP_OFFICIAL_DEFAULT_VS_V4_BEST/V4/PUMP_adaptive_anchor_v4_l1-2-3-4-5-6-7-8_g12-16-20-24-28-32-40-48_kl2_kg4.pt",
+    "checkpoint_sha256": "4f2e62c734fed27b911fced7c62cebed7d9d4b593156d3aeab29b18fb3217faf",
+    "input_c": 51,
+    "output_c": 51,
+    "win_size": 100,
+    "batch_size": 128,
+    "score_mode": "total",
+    "local_candidate_lags": [1, 2, 3, 4, 5, 6, 7, 8],
+    "global_candidate_lags": [12, 16, 20, 24, 28, 32, 40, 48],
+    "local_topk": 2,
+    "global_topk": 4,
+    "historical_metrics_reused": false,
+    "historical_oracle_selection_reused": false
+  },
+  "pplad": {
+    "model": "PPLAD",
+    "configuration_status": "fixed fallback configuration",
+    "official_pump_optimal": false,
+    "input_c": 51,
+    "output_c": 51,
+    "win_size": 60,
+    "batch_size": 128,
+    "num_epochs": 3,
+    "lr": 0.0001,
+    "local_size": [3],
+    "global_size": [20],
+    "d_model": 128,
+    "r": 0.5,
+    "similar": "MSE",
+    "loss_fuc": "MSE",
+    "anormly_ratio": 0.5,
+    "index": 137
+  },
+  "ltfad": {
+    "model": "LTFAD",
+    "configuration_status": "fixed fallback configuration",
+    "official_pump_optimal": false,
+    "input_c": 51,
+    "output_c": 51,
+    "win_size": 90,
+    "batch_size": 128,
+    "num_epochs": 2,
+    "lr": 0.0001,
+    "local_size": [5],
+    "global_size": [13],
+    "d_model": 128,
+    "r": 0.1,
+    "loss_fuc": "MSE",
+    "anormly_ratio": 0.5,
+    "index": 137
+  },
+  "loader_audit": {
+    "training_allowed_files": ["dataset/PUMP/PUMP_train.npy"],
+    "training_forbidden_files": [
+      "dataset/PUMP/PUMP_test.npy",
+      "dataset/PUMP/PUMP_test_label.npy"
+    ],
+    "score_phase_label_access": false,
+    "dummy_labels": "in-memory zeros only"
+  }
+}

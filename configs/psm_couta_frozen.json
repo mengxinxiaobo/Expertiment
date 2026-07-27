@@ -1,0 +1,59 @@
+{
+  "dataset": "PSM",
+  "model": "COUTA",
+  "config_type": "fixed external configuration",
+  "seed": 42,
+  "dtype": "float32",
+  "expected_shapes": {
+    "train": [132481, 25],
+    "test": [87841, 25],
+    "label": [87841]
+  },
+  "preprocessing": {
+    "scaler": "StandardScaler",
+    "fit_split": "train",
+    "test_in_fit": false
+  },
+  "model_config": {
+    "seq_len": 30,
+    "train_stride": 10,
+    "inference_stride": 1,
+    "epochs": 20,
+    "batch_size": 64,
+    "lr": 0.0001,
+    "hidden_dims": 16,
+    "rep_dim": 16,
+    "rep_hidden": 16,
+    "pretext_hidden": 16,
+    "kernel_size": 2,
+    "dropout": 0.0,
+    "bias": true,
+    "alpha": 0.1,
+    "neg_batch_ratio": 0.2,
+    "train_val_pc": 0.25,
+    "ss_type": "FULL",
+    "device": "cuda",
+    "random_state": 42,
+    "expected_parameters": 2897
+  },
+  "evaluation": {
+    "anomaly_ratio": 0.8,
+    "percentile": 99.2,
+    "threshold_rule": "percentile(concat(train_score,test_score),99.2)",
+    "score_direction": "larger_is_more_anomalous",
+    "prefix_padding_points": 29,
+    "test_inference_windows": 87812,
+    "score_search": false,
+    "ratio_search": false,
+    "threshold_search": false,
+    "parameter_search": false,
+    "oracle_search": false,
+    "best_f1_search": false
+  },
+  "source": {
+    "repository": "BaselineModels/DeepOD-main",
+    "class": "deepod.models.time_series.couta.COUTA",
+    "configuration_source": "DeepOD generic testbed configuration plus COUTA constructor defaults",
+    "official_psm_optimal": false
+  }
+}

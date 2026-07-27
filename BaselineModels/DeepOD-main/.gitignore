@@ -1,0 +1,9 @@
+deepod.egg-info/
+dist/
+build/
+.idea
+**/__pycache__
+docs_output
+docs/generated
+.vscode
+sphinx-build

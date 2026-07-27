@@ -1,0 +1,53 @@
+{
+  "dataset": "PSM",
+  "seed": 42,
+  "dtype": "float32",
+  "expected_shapes": {
+    "train": [132481, 25],
+    "test": [87841, 25]
+  },
+  "preprocessing": {
+    "scaler": "StandardScaler",
+    "fit_split": "train",
+    "train_operation": "fit_transform",
+    "test_operation": "transform_only",
+    "test_in_fit": false
+  },
+  "model": {
+    "repository": "BaselineModels/TranAD-main",
+    "class": "TranAD",
+    "window": 10,
+    "input_channels": 25,
+    "expected_parameters": 57273,
+    "input_layout": "batch,window,channels",
+    "window_construction": "official_left_pad_previous_points",
+    "configuration_status": "fixed external PSM configuration"
+  },
+  "training": {
+    "epochs": 5,
+    "batch_size": 128,
+    "optimizer": "Adam",
+    "learning_rate": 0.0001,
+    "training_test_feature_access": false,
+    "training_test_label_access": false
+  },
+  "evaluation": {
+    "anomaly_ratio": 0.8,
+    "percentile": 99.2,
+    "threshold_rule": "percentile(concat(train_score,test_score),99.2)",
+    "pot_spot_enabled": false,
+    "bf_search_enabled": false,
+    "score_search": false,
+    "ratio_search": false,
+    "threshold_search": false,
+    "f1_threshold_search": false,
+    "parameter_search": false,
+    "test_label_parameter_selection": false
+  },
+  "audit": {
+    "training_label_access": false,
+    "test_label_access_during_model_phases": false,
+    "test_label_filename": "PSM_test_label.npy",
+    "model_source_modified": false
+  }
+}

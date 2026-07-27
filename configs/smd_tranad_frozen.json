@@ -1,0 +1,55 @@
+{
+  "dataset": "SMD",
+  "seed": 42,
+  "dtype": "float32",
+  "expected_shapes": {
+    "train": [708405, 38],
+    "test": [708420, 38],
+    "label": [708420]
+  },
+  "preprocessing": {
+    "scaler": "StandardScaler",
+    "fit_split": "train",
+    "train_operation": "fit_transform",
+    "test_operation": "transform_only",
+    "test_in_fit": false
+  },
+  "model": {
+    "repository": "BaselineModels/TranAD-main",
+    "class": "TranAD",
+    "window": 10,
+    "input_channels": 38,
+    "expected_parameters": 127538,
+    "input_layout": "batch,window,channels",
+    "window_construction": "official_left_pad_previous_points",
+    "configuration_status": "fixed external SMD configuration"
+  },
+  "training": {
+    "epochs": 5,
+    "batch_size": 128,
+    "optimizer": "Adam",
+    "learning_rate": 0.0001,
+    "training_test_feature_access": false,
+    "training_test_label_access": false
+  },
+  "evaluation": {
+    "anomaly_ratio": 0.9,
+    "percentile": 99.1,
+    "ratio_source": "configs/smd_three_models_frozen.json and results/SMD_PAPER_RESULTS/protocol.json",
+    "threshold_rule": "percentile(concat(train_score,test_score),99.1)",
+    "pot_spot_enabled": false,
+    "bf_search_enabled": false,
+    "score_search": false,
+    "ratio_search": false,
+    "threshold_search": false,
+    "f1_threshold_search": false,
+    "parameter_search": false,
+    "test_label_parameter_selection": false
+  },
+  "audit": {
+    "training_label_access": false,
+    "test_label_access_during_model_phases": false,
+    "test_label_filename": "SMD_test_label.npy",
+    "model_source_modified": false
+  }
+}

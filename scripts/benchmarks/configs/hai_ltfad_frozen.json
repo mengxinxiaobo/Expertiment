@@ -1,0 +1,42 @@
+{
+  "registration_status": "pre-registered before HAI formal evaluation",
+  "configuration_source": "fixed cross-dataset fallback; official LTFAD HAI configuration unavailable",
+  "dataset": "HAI",
+  "data_path": "HAI",
+  "expected_shapes": {
+    "train": [896400, 86],
+    "test": [284400, 86],
+    "label": [284400]
+  },
+  "input_c": 86,
+  "output_c": 86,
+  "win_size": 90,
+  "batch_size": 128,
+  "num_epochs": 2,
+  "lr": 0.0001,
+  "d_model": 128,
+  "local_size": [5],
+  "global_size": [13],
+  "r": 0.1,
+  "loss_fuc": "MSE",
+  "anormly_ratio": 0.98,
+  "threshold_percentile": 99.02,
+  "threshold_rule": "percentile(concat(train_energy,test_energy),99.02)",
+  "seed": 42,
+  "index": 137,
+  "preprocessing": {
+    "dtype": "float32",
+    "scaler": "StandardScaler",
+    "fit": "train only",
+    "test": "transform only"
+  },
+  "loader": {
+    "train_stride": 1,
+    "test_stride": 1,
+    "threshold_stride": 90,
+    "training_test_label_access": false
+  },
+  "parameter_search": false,
+  "threshold_search": false,
+  "test_label_parameter_selection": false
+}

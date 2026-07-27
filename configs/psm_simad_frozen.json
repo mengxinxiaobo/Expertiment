@@ -1,0 +1,63 @@
+{
+  "dataset": "PSM",
+  "seed": 42,
+  "dtype": "float32",
+  "scaler": {
+    "type": "StandardScaler",
+    "fit": "PSM_train.npy",
+    "train": "fit_transform",
+    "test": "transform_only"
+  },
+  "expected_shapes": {
+    "train": [132481, 25],
+    "test": [87841, 25],
+    "label": [87841]
+  },
+  "model": {
+    "configuration_source": "BaselineModels/SimAD-main/scripts/PSM.sh plus main.py defaults",
+    "win_size": 2048,
+    "step": 1,
+    "patch_size": 32,
+    "d_model": 512,
+    "ffn_scale": 4,
+    "n_head": 8,
+    "n_layers": 8,
+    "q_len": 1000,
+    "dropout": 0.1,
+    "with_inter": 0,
+    "with_intra": 0,
+    "proj_dim": 10
+  },
+  "training": {
+    "epochs": 20,
+    "batch_size": 128,
+    "lr": 0.001,
+    "optimizer": "AdamW",
+    "accumulate_grad_steps": 1,
+    "noise_level": 0.1,
+    "warmup_steps": 20000,
+    "warmup_max_ratio": 0.2,
+    "max_batches_per_epoch": 500,
+    "use_amp": false,
+    "training_label_access": false,
+    "training_test_feature_access": false,
+    "training_test_label_access": false
+  },
+  "scoring": {
+    "mode": "official_rec_score_func2",
+    "window_stride": 2048,
+    "overlap_aggregation": false
+  },
+  "evaluation": {
+    "anomaly_ratio": 0.8,
+    "percentile": 99.2,
+    "threshold_rule": "percentile(concat(train_score,test_score),99.2)",
+    "threshold_independent": true,
+    "point_adjustment": "PPLAD-compatible segment adjustment",
+    "score_search": false,
+    "ratio_search": false,
+    "threshold_search": false,
+    "parameter_search": false,
+    "test_label_parameter_selection": false
+  }
+}
