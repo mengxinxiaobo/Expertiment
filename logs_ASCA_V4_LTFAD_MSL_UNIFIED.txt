@@ -1,0 +1,12 @@
+train=(58317, 55) test=(73729, 55) labels=(73729,) files=MSL_train.npy,MSL_test.npy,MSL_test_label.npy
+ASCA-AD V4: 146 parameters
+[ASCA-AD V4] epoch 1/3 loss=0.013826 time=9.675s
+[ASCA-AD V4] epoch 2/3 loss=0.004024 time=7.657s
+[ASCA-AD V4] epoch 3/3 loss=0.004268 time=7.682s
+ASCA-AD V4: RAW-F1=0.0166 PA-F1=0.9104 test=0.046s peak=115.13MiB
+LTFAD: 16188 parameters
+[LTFAD] epoch 1/3 loss=0.205606 time=161.215s
+[LTFAD] epoch 2/3 loss=0.190678 time=155.801s
+[LTFAD] epoch 3/3 loss=0.187454 time=160.288s
+LTFAD: RAW-F1=0.0114 PA-F1=0.7904 test=0.832s peak=1263.26MiB
+Saved to /mnt/c/Users/DING/Desktop/Experiment/CODE/results/BASELINE_COMPARISON/MSL

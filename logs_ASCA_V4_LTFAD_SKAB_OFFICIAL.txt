@@ -1,0 +1,26 @@
+================================================================================
+SKAB comparison: ASCA-AD V4 vs LTFAD
+train=(12450, 8) test=(5710, 8) labels=(5710,)
+files=SKAB_train.npy,SKAB_test.npy,SKAB_test_label.npy
+================================================================================
+
+ASCA-AD V4: 146 parameters
+ASCA-AD V4: win=100, epochs=10, train_step=1, eval_step=100
+[ASCA-AD V4] epoch 1/10 loss=0.047174 time=2.736s
+[ASCA-AD V4] epoch 2/10 loss=0.035331 time=1.560s
+[ASCA-AD V4] epoch 3/10 loss=0.013235 time=1.468s
+[ASCA-AD V4] epoch 4/10 loss=0.006756 time=1.472s
+[ASCA-AD V4] epoch 5/10 loss=0.006599 time=1.551s
+[ASCA-AD V4] epoch 6/10 loss=0.006457 time=1.601s
+[ASCA-AD V4] epoch 7/10 loss=0.006263 time=1.555s
+[ASCA-AD V4] epoch 8/10 loss=0.006004 time=1.503s
+[ASCA-AD V4] epoch 9/10 loss=0.005838 time=1.615s
+[ASCA-AD V4] epoch 10/10 loss=0.005762 time=1.604s
+ASCA-AD V4: ratio=0.3, RAW-F1=0.0079, PA-F1=0.9975, test=0.010s, peak=40.29MiB
+
+LTFAD: 14,646 parameters
+LTFAD: win=90, epochs=2, train_step=1, eval_step=90
+[LTFAD] epoch 1/2 loss=2.015264 time=4.014s
+[LTFAD] epoch 2/2 loss=1.828393 time=3.528s
+LTFAD: ratio=0.3, RAW-F1=0.0089, PA-F1=0.8860, test=0.013s, peak=180.46MiB
+Saved to /mnt/c/Users/DING/Desktop/Experiment/CODE/results/BASELINE_COMPARISON/SKAB_OFFICIAL
